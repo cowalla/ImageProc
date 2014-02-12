@@ -6,15 +6,22 @@ total_length = x*y
 pixelMap = img.load()
 data = img.getdata()
 from copy import deepcopy
+from binary_filter import on_off
+from binary_filter import rgb
+
 #data is an array of sets, each one representing a pixel value. the array is flattened
 
 outData = []
 for i in range(0, total_length):
-	# if i % y != 0 and i % y != ( y - 1 ):
-	# 	# i is not on a horizontal boundary (important when performing NN calcs)
-		if i > x and i < (x - 1) * ( y ):
-	# 		# i is not on a vertical boundary
-			outData.append(data[i])
-			
-img.putdata(outData)
+	dat = data[i]
+	if (i < y or i > x * (y - 1)):
+		outData.append(dat)
+	if i > y and i < x * (y - 1):
+		# outData.append(rgb(dat, 155))
+		outData.append(rgb(dat, 100))
+
+img.putdata(outData[::-1])
 img.save("changed.jpg", "JPEG")
+
+
+
