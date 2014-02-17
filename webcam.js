@@ -25,3 +25,4 @@ navigator.webkitGetUserMedia({video: true, audio: true}, function(localMediaStre
     // Ready to go. Do some stuff.
   };
 }, errorCallback);
+
